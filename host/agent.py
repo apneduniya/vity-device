@@ -38,11 +38,4 @@ async def agent(task: str, expected_output: str = "Get the ouput/result of the t
     result = await my_crew.kickoff_async()
     print(result)
     return result
-
-
-async def main():
-    result = await agent("Search samsung t7 1tb external ssd so that I can order it", "Search results for samsung t7 1tb external ssd")
-    print(result)
-
-if __name__ == "__main__":
-    asyncio.run(main())  # Run the async main function in an event loop
+    

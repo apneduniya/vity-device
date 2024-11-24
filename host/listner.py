@@ -1,4 +1,5 @@
 from ably import AblyRealtime
+from ably.types.message import Message as AblyMessage
 from agent import agent
 import dotenv
 import os
@@ -11,7 +12,7 @@ client: AblyRealtime = None
 channel = None
 
 
-async def listener(message):
+async def listener(message: AblyMessage):
     print("Received a command, processing it...")
     prompt = message.data["prompt"]
     response = await agent(prompt)  # If agent is async, await it

@@ -1,8 +1,9 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { getAblyClient, publishPrompt } from "@/lib/ably";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 interface InputWithButtonProps {
@@ -23,33 +24,44 @@ export function InputWithButton({ setResponse, setLoading, setOpen, deviceID }: 
         // validate
         if (!instruction) {
             alert('Please enter a valid instruction');
-        } 
+            return;
+        }
         if (!deviceID) {
             alert('Please enter a valid device ID in settings');
+            return;
+        } else if (deviceID.length !== 36) {
+            alert('The device ID should be 36 characters long');
+            return;
         }
 
         setLoading(true);
 
-        // await fetch('/api/run-agent', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ instruction: instruction, app: app, entityId: entityId }),
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log('Success:', data);
-
-                setOpen(true);
-                setResponse(instruction);
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error:', error);
-        //     });
-
-        setLoading(false);
+        // publish to ably
+        await publishPrompt(deviceID, { "prompt": instruction });
     }
+
+    useEffect(() => {
+
+        if (!deviceID || deviceID.length !== 36) {
+            return;
+        }
+
+        const ably = getAblyClient();
+        const newChannel = ably.channels.get(deviceID);
+    
+        // Subscribe to messages
+        newChannel.subscribe('response', (msg) => {
+            setResponse(msg.data);
+            setLoading(false);
+            setOpen(true);
+        });
+    
+        // Cleanup on unmount
+        return () => {
+          newChannel.unsubscribe('response');
+          newChannel.detach();
+        };
+      }, [deviceID, setLoading, setOpen, setResponse]);
 
     return (
         <div className="flex w-full !max-w-xl items-center space-x-4 my-5">
