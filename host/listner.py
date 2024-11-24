@@ -27,6 +27,10 @@ async def listen_for_prompt(channel_name: str):
     client = AblyRealtime(os.getenv("ABLY_API_KEY"))  # Initialize inside an async function
     channel = client.channels.get(channel_name)
 
+    print('Connecting to server...')
+    await client.connection.once_async('connected')
+    print('Connected!')
+
     print("Listening for commands...")
     await channel.subscribe('new-prompt', listener)
 

@@ -29,7 +29,7 @@ export function InputWithButton({ setResponse, setLoading, setOpen, deviceID }: 
         if (!deviceID) {
             alert('Please enter a valid device ID in settings');
             return;
-        } else if (deviceID.length !== 36) {
+        } else if (deviceID.length !== 5) {
             alert('The device ID should be 36 characters long');
             return;
         }
@@ -42,7 +42,7 @@ export function InputWithButton({ setResponse, setLoading, setOpen, deviceID }: 
 
     useEffect(() => {
 
-        if (!deviceID || deviceID.length !== 36) {
+        if (!deviceID || deviceID.length !== 5) {
             return;
         }
 
