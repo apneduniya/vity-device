@@ -104,7 +104,7 @@ export default function Home() {
                                 loading && (
                                     <Alert className="max-w-[500px]">
                                         <RocketIcon className="h-4 w-4" />
-                                        <AlertTitle>Loading</AlertTitle>
+                                        <AlertTitle>Keep an eye on the device!</AlertTitle>
                                         <AlertDescription>
                                             Just wait for few seconds, we are working on it 😉
                                         </AlertDescription>
@@ -120,7 +120,7 @@ export default function Home() {
                             <div className="mt-4 flex gap-2 flex-wrap">
                                 <PromptSuggestionButton text="Open vs code" />
                                 <PromptSuggestionButton text="Open capx ai website on browser" />
-                                <PromptSuggestionButton text="What is the temperature in Kolkata?" />
+                                <PromptSuggestionButton text="Open browser and tell me what is the temperature in Kolkata?" />
                             </div>
                         </div>
                     </div>

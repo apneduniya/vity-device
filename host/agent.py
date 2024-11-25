@@ -1,4 +1,3 @@
-import asyncio
 from composio_crewai import ComposioToolSet, App
 from langchain_openai import ChatOpenAI
 from crewai import Agent, Task, Crew
@@ -33,9 +32,12 @@ async def agent(task: str, expected_output: str = "Get the ouput/result of the t
         expected_output=expected_output,
     )
 
-    my_crew = Crew(agents=[crewai_agent], tasks=[task], verbose=True)
+    my_crew = Crew(
+        agents=[crewai_agent], 
+        tasks=[task], 
+        verbose=False
+    )
 
     result = await my_crew.kickoff_async()
-    print(result)
-    return result
+    print("The result of the task is:", result)
     

@@ -8,7 +8,7 @@ import dotenv
 dotenv.load_dotenv()
 
 # check if the required environment variables are present or not
-if not os.getenv("OPENAI_API_KEY") or not os.getenv("ABLY_API_KEY"):
+if not os.getenv("OPENAI_API_KEY"):
     print("Please set the environment variables OPENAI_API_KEY and ABLY_API_KEY")
     exit(1)
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { getAblyClient, publishPrompt } from "@/lib/ably";
+import { publishPrompt } from "@/lib/ably";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 interface InputWithButtonProps {
@@ -14,7 +14,7 @@ interface InputWithButtonProps {
 }
 
 
-export function InputWithButton({ setResponse, setLoading, setOpen, deviceID }: InputWithButtonProps) {
+export function InputWithButton({ setLoading, deviceID }: InputWithButtonProps) {
     const [instruction, setInstruction] = useState("");
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,7 +29,7 @@ export function InputWithButton({ setResponse, setLoading, setOpen, deviceID }: 
         if (!deviceID) {
             alert('Please enter a valid device ID in settings');
             return;
-        } else if (deviceID.length !== 5) {
+        }  else if (deviceID.length !== 36) {
             alert('The device ID should be 36 characters long');
             return;
         }
@@ -38,37 +38,14 @@ export function InputWithButton({ setResponse, setLoading, setOpen, deviceID }: 
 
         // publish to ably
         await publishPrompt(deviceID, { "prompt": instruction });
-    }
-
-    useEffect(() => {
-
-        if (!deviceID || deviceID.length !== 5) {
-            return;
-        }
-
-        const ably = getAblyClient();
-        const newChannel = ably.channels.get(deviceID);
-    
-        // Subscribe to messages
-        newChannel.subscribe('response', (msg) => {
-            setResponse(msg.data);
-            setLoading(false);
-            setOpen(true);
-        });
-    
-        // Cleanup on unmount
-        return () => {
-          newChannel.unsubscribe('response');
-          newChannel.detach();
-        };
-      }, [deviceID, setLoading, setOpen, setResponse]);
+    };
 
     return (
-        <div className="flex w-full !max-w-xl items-center space-x-4 my-5">
+        <form onSubmit={handleSubmit} className="flex w-full !max-w-xl items-center space-x-4 my-5">
             <Input type="text" placeholder="How can vity assist you?" className="h-12 w-full" value={instruction} onChange={(e) => setInstruction(e.target.value)} />
-            <button type="submit" className="inline-flex animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] py-3.5 px-4 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 group/ask-btn" onClick={handleSubmit}>
+            <button type="submit" className="inline-flex animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] py-3.5 px-4 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 group/ask-btn">
                 <PaperPlaneIcon className="h-4 w-4 group-hover/ask-btn:-rotate-45 transition duration-500" />
             </button>
-        </div>
+        </form>
     )
 }
