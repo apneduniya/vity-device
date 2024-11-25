@@ -1,8 +1,8 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { publishPrompt } from "@/lib/ably";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
+import axios from "axios";
 import { useState } from "react";
 
 
@@ -36,8 +36,8 @@ export function InputWithButton({ setLoading, deviceID }: InputWithButtonProps) 
 
         setLoading(true);
 
-        // publish to ably
-        await publishPrompt(deviceID, { "prompt": instruction });
+        // send prompt to the host device
+        await axios.post("/api/prompt", { instruction, deviceID });
     };
 
     return (

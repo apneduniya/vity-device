@@ -5,7 +5,7 @@ let ablyClient: Ably.Realtime;
 export const getAblyClient = (): Ably.Realtime => {
     if (!ablyClient) {
         ablyClient = new Ably.Realtime({
-            key: process.env.NEXT_PUBLIC_ABLY_API_KEY || '', // Replace with your Ably API Key
+            key: process.env.ABLY_API_KEY || '', // Replace with your Ably API Key
         });
     }
     return ablyClient;

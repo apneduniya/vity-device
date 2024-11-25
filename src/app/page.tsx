@@ -24,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import ReactMarkdown from 'react-markdown';
 import Image from "next/image";
+// import { useWallets } from "@privy-io/react-auth";
 
 
 export default function Home() {
@@ -33,6 +34,8 @@ export default function Home() {
     const [open, setOpen] = useState(false);
     const [renderResponse, setRenderResponse] = useState<JSX.Element[]>([]);
     const [deviceID, setDeviceID] = useState("");
+    // const { wallets } = useWallets();
+
 
     useEffect(() => {
         if (response) {
@@ -97,6 +100,9 @@ export default function Home() {
                                 Powered by
                                 <Image className="ml-1 mt-0.5" src="https://cdn.prod.website-files.com/66f2906c5f206d52f0a157a3/66f3ddaf88e193c145f54f0d_capx-logo-p-500.png" height={10} width={36} alt="capx" />
                             </Badge>
+                            {/* <Badge className="h-min">
+                                {wallets[0]?.address}
+                            </Badge> */}
                         </div>
                         {/* Not Chat */}
                         <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center">

@@ -115,7 +115,7 @@ export default function ExpandableCardDemo() {
       ) : null}
     </AnimatePresence>
     <ul className="max-w-2xl mx-auto w-full gap-4">
-      {cards.map((card, index) => (
+      {cards.map((card) => (
         <motion.div
           layoutId={`card-${card.title}-${id}`}
           key={`card-${card.title}-${id}`}
@@ -280,16 +280,16 @@ const cards = [
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
       return (
-        (<p>"Aawarapan", a Bollywood movie starring Emraan Hashmi, is
-                    renowned for its intense storyline and powerful performances. Directed
-                    by Mohit Suri, the film has become a significant work in the Indian
-                    film industry. <br /> <br />The movie explores themes of love,
-                    redemption, and sacrifice, capturing the essence of human emotions and
-                    relationships. With a gripping narrative and memorable music,
-                    "Aawarapan" has garnered a massive fan following both in
-                    India and abroad, solidifying Emraan Hashmi's status as a
-                    versatile actor.
-                  </p>)
+        (<p>&quot;Aawarapan&quot;, a Bollywood movie starring Emraan Hashmi, is
+            renowned for its intense storyline and powerful performances. Directed
+            by Mohit Suri, the film has become a significant work in the Indian
+            film industry. <br /> <br />The movie explores themes of love,
+            redemption, and sacrifice, capturing the essence of human emotions and
+            relationships. With a gripping narrative and memorable music,
+            &quot;Aawarapan&quot; has garnered a massive fan following both in
+            India and abroad, solidifying Emraan Hashmi&apos;s status as a
+            versatile actor.
+          </p>)
       );
     },
   },
