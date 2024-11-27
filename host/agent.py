@@ -2,6 +2,7 @@ from composio_crewai import ComposioToolSet, App
 from langchain_openai import ChatOpenAI
 from crewai import Agent, Task, Crew
 import dotenv
+from langchain_anthropic import ChatAnthropic
 
 
 dotenv.load_dotenv()
@@ -10,6 +11,7 @@ async def agent(task: str, expected_output: str = "Get the ouput/result of the t
     llm = ChatOpenAI(
         model="gpt-4o",
     )
+
     composio_toolset = ComposioToolSet()
     tools = composio_toolset.get_tools(apps=[App.ANTHROPIC])
 

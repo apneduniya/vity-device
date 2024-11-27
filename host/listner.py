@@ -1,12 +1,8 @@
 from ably import AblyRealtime
 from ably.types.message import Message as AblyMessage
-from agent import agent
-import dotenv
-import os
+from operate.operate import main
 import asyncio
 
-
-dotenv.load_dotenv()
 
 client: AblyRealtime = None
 channel = None
@@ -16,7 +12,7 @@ ABLY_API_KEY = "kgOD6Q.SfpZmQ:h6Cux_lty4VMZc9_6TJK6k1zGwrEwncsYScdMiXC8Xc"
 async def listener(message: AblyMessage):
     print("Received a command, processing it...")
     prompt = message.data["prompt"]
-    await agent(prompt)  # If agent is async, await it
+    await asyncio.to_thread(main, "gpt-4o", prompt, voice_mode=False, verbose_mode=False)
     print("Agent has executed the command successfully!")
 
 

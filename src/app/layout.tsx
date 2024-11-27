@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-// import Providers from "@/providers";
+import Providers from "@/providers";
 
 
 const geistSans = localFont({
@@ -33,9 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {/* <Providers> */}
+                    <Providers>
                         {children}
-                    {/* </Providers> */}
+                    </Providers>
                     <Toaster />
                 </ThemeProvider>
             </body>
