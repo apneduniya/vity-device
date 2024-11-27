@@ -1,14 +1,17 @@
-import PrivyWalletProvider from "@/context/PrivyProvider";
+"use client"
+
 import UserAuthContext from "@/context/UserAuthContext";
+import PrivyWalletProvider from "@/context/PrivyProvider";
+
 
 export default function Providers({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <PrivyWalletProvider>
-                <UserAuthContext>
+            <UserAuthContext>
+                <PrivyWalletProvider>
                     {children}
-                </UserAuthContext>
-            </PrivyWalletProvider>
+                </PrivyWalletProvider>
+            </UserAuthContext>
         </>
     );
 }

@@ -41,7 +41,9 @@ const Capx = defineChain({
 const PrivyWrapper = ({ children }: { children: React.ReactNode }) => {
     const { txDetails, userDetails, getUserDetails } = useUserDetails();
     const { wallets } = useWallets();
+    console.log(wallets, "wallets");
     const { user, authenticated, createWallet } = usePrivy();
+    console.log("authenticated", authenticated);
 
     const mintXId = async () => {
         const startTime = performance.now();
@@ -124,14 +126,16 @@ const PrivyWrapper = ({ children }: { children: React.ReactNode }) => {
 
 export default function PrivyWalletProvider({ children }: { children: React.ReactNode }) {
     const { isUserCreated } = useUserDetails();
+    console.log(isUserCreated, "isUserCreated");
 
-    const getCustomToken = useCallback(async () => {
+    const getCustomToken = useCallback<() => Promise<string | undefined>>(async () => {
+        console.log(isUserCreated, "isUserCreated 2");
         if (isUserCreated) {
             const idToken = Cookies.get("access_token");
-            return idToken;
-        } else {
-            return undefined;
+            console.log(idToken, "idToken");
+            return idToken || undefined; // Explicitly return undefined if the token is not found
         }
+        return undefined; // Explicitly return undefined if the condition is not met
     }, [isUserCreated]);
 
     return (
@@ -147,9 +151,8 @@ export default function PrivyWalletProvider({ children }: { children: React.Reac
                     showWalletLoginFirst: false,
                 },
                 customAuth: {
-                    isLoading: false,
-                    // isAuthReady: isUserCreated,
                     getCustomAccessToken: getCustomToken,
+                    isLoading: !isUserCreated,
                 },
             }}
         >

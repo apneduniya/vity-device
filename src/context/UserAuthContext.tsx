@@ -15,10 +15,18 @@ import Cookies from "js-cookie";
 import { setTokenCookiesFunction } from "@/utils/setTokenCookies";
 import api from "@/utils/api";
 
-const UserDetailsContext = createContext<any | undefined>(undefined);
+
+interface UserDetails {
+    userDetails: any;
+    isUserCreated: boolean;
+    txDetails: any;
+    getUserDetails: () => void;
+}
+
+const UserDetailsContext = createContext<UserDetails | undefined>(undefined);
 const UserAuthContext = ({ children }: { children: React.ReactNode }) => {
     const [userDetails, setUserDetails] = useState({});
-    const [isUserCreated, setIsUserCreated] = useState(false);
+    const [isUserCreated, setIsUserCreated] = useState<boolean>(false);
     const [txDetails, setTxDetails] = useState({});
 
   const initDataRaw = useLaunchParams()?.initDataRaw;
@@ -54,6 +62,7 @@ const UserAuthContext = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         (async () => {
+            console.log(initDataRaw, "initDataRaw");
             if (initDataRaw) {
                 try {
                     // Verify init data with MAB
@@ -88,4 +97,10 @@ const UserAuthContext = ({ children }: { children: React.ReactNode }) => {
 
 export default UserAuthContext;
 
-export const useUserDetails = () => useContext(UserDetailsContext);
+export const useUserDetails = () => {
+    const context = useContext(UserDetailsContext);
+    if (context === undefined) {
+      throw new Error("useUserDetails must be used within a UserContext");
+    }
+    return context;
+  };

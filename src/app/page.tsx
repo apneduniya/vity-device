@@ -122,8 +122,10 @@ export default function Home() {
                                 <FlipWords words={words} />
                             </div>
                             <h2 className="text-balance text-center text-sm text-gray-400">Give a task, ask questions, and much more.</h2>
-                            <InputWithButton setResponse={setResponse} setLoading={setLoading} setOpen={setOpen} deviceID={deviceID} />
-                            <div className="mt-4 flex gap-2 flex-wrap">
+                            <div className="w-full px-6">
+                                <InputWithButton setResponse={setResponse} setLoading={setLoading} setOpen={setOpen} deviceID={deviceID} />
+                            </div>
+                            <div className="w-full mt-4 flex gap-2 flex-wrap px-6">
                                 <PromptSuggestionButton text="Open vs code" />
                                 <PromptSuggestionButton text="Open capx ai website on brave browser" />
                                 <PromptSuggestionButton text="Write an essay on AI agents on Google Docs. I have brave browser." />
