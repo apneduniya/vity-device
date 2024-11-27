@@ -125,8 +125,8 @@ export default function Home() {
                             <InputWithButton setResponse={setResponse} setLoading={setLoading} setOpen={setOpen} deviceID={deviceID} />
                             <div className="mt-4 flex gap-2 flex-wrap">
                                 <PromptSuggestionButton text="Open vs code" />
-                                <PromptSuggestionButton text="Open capx ai website on browser" />
-                                <PromptSuggestionButton text="Open browser and tell me what is the temperature in Kolkata?" />
+                                <PromptSuggestionButton text="Open capx ai website on brave browser" />
+                                <PromptSuggestionButton text="Write an essay on AI agents on Google Docs. I have brave browser." />
                             </div>
                         </div>
                     </div>
