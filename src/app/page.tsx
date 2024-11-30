@@ -127,9 +127,9 @@ export default function Home() {
                             </div>
                             <div className="w-full mt-4 flex gap-2 flex-wrap px-6">
                                 <PromptSuggestionButton text="Open vs code" />
-                                <PromptSuggestionButton text="Show me tweets from elon musk" />
-                                <PromptSuggestionButton text="Open myprograms folder" />
-                                <PromptSuggestionButton text="Open notes and write an essay on ai agents" />
+                                <PromptSuggestionButton text="Show me tweets from elon musk using brave browser" />
+                                <PromptSuggestionButton text="Open myprograms folder using finder" />
+                                <PromptSuggestionButton text="Open notes, create a new note and write a small essay on ai agents" />
                             </div>
                         </div>
                     </div>
