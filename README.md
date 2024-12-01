@@ -1,6 +1,6 @@
 <h1 align="center">Vity Device 🤖</h1>
 
-<p align="center">A telegram bot which will help you too connect your devices and automate its actions seamlessly between devices 🔥</p>
+<p align="center">A telegram bot which will help you to connect your devices and automate its actions seamlessly between devices 🔥</p>
 
 ## 📋 Table of Contents
 - [Demo](#-demo)
