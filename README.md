@@ -21,8 +21,8 @@ This telegram bot agent can:
 
 - Interact with nearly all apps and browsers.
 - Integrated with **GPT-4o, Gemini Pro Vision, Claude 3 and LLaVa.**
-- **Future plan:** Send response back to the commander
-- **Future plan:** Connect mobile phones and tablets remotely.
+- **Future plan:** Send response back to the commander.
+- **Future plan:** Connect multiple mobile phones and tablets remotely at once.
 
 ## 🫳 Prerequisites
 You should have
