@@ -184,10 +184,9 @@ cd path/to/project/directory
 5. Create a pull request.
 
 ## ✍ Acknowledgments
-This project couldn't be there if they didn't be there!
-- [CapxAI](https://www.capx.ai/)
+This project couldn't be there if [CapxAI](https://www.capx.ai/) didn't be there!
 
-Even I had many issues while making this project and this was my first time to make a telegram bot but capxai team helped me to over come the issues, gave me suggestions and I am really thankful to it ❤️‍🩹!
+Even I had many issues while making this project and this was my first time to make a telegram bot but there team helped me a lot to over come the issues, gave me suggestions and I am really thankful to it ❤️‍🩹!
 
 ## 🧾 License
 This project is licensed under the [MIT License](LICENSE).
