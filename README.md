@@ -186,7 +186,6 @@ cd path/to/project/directory
 ## ✍ Acknowledgments
 This project couldn't be there if they didn't be there!
 - [CapxAI](https://www.capx.ai/)
-- [Self Operating Computer](https://github.com/OthersideAI/self-operating-computer)
 
 Even I had many issues while making this project and this was my first time to make a telegram bot but capxai team helped me to over come the issues, gave me suggestions and I am really thankful to it ❤️‍🩹!
 
